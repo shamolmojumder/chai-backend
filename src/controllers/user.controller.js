@@ -6,8 +6,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 const registerUser = asyncHandler(async (req, res) => {
     // get user details from frontend
-    //validation-empthy filed
-    //check if the user is alredy exiits username|| email
+    //validation-empty filed
+    //check if the user is already exist username|| email
     //check the image/avatar
     //upload them to cloudianry
     //create user object in db
@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // check for user creation
     //return res
     const { username, email, fullName, password } = req.body
-    console.log("req.body", req.body);
+    // console.log("req.body", req.body);
 
     // if (fullName == "") {
     //     throw new ApiError(400, "Fullname is required")
@@ -24,16 +24,16 @@ const registerUser = asyncHandler(async (req, res) => {
         [username, email, fullName, password].some((field) => field?.trim() === "")
 
     ) {
-        throw new ApiError(400, "All fileds are required")
+        throw new ApiError(400, "All filed are required")
     }
 
-    const existindUser = await User.findOne({
+    const existingUser = await User.findOne({
         $or: [{ username }, { email }]
     })
-    if (existindUser) {
+    if (existingUser) {
         throw new ApiError(409, "User with email or username already exists")
     }
-    console.log("req.files", req.files);
+    // console.log("req.files", req.files);
     const avatarLocalPath = req.files?.avatar[0]?.path;
     // const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
@@ -72,9 +72,30 @@ const registerUser = asyncHandler(async (req, res) => {
 
 })
 
+const loginUser = asyncHandler(async (req, res) => {
+    // get user details from frontend
+    //validation-empty filed
+    // find the user from db
+    //match the password
+    // send cookies
+    //return res
+    const { email, username, password } = req.body;
 
+    if (!email || !username) {
+        throw new ApiError(400, "username & email is required ")
+    }
+
+    const user = await User.findOne({
+        $or: [{ username }, { email }]
+    })
+
+    if (!user) {
+        throw ApiError(404, "User doesn't exist")
+    }
+})
 
 
 export {
     registerUser,
+    loginUser
 };
