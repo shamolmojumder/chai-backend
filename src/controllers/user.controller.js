@@ -4,6 +4,22 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
+
+const generateAccessAndRefreshTokens = async (userId) => {
+    try {
+        const user = await User.findById(userId);
+        const accessToken = generateAccessToken();
+        const refreshToken = generateRefreshToken();
+        user.refreshToken = refreshToken;
+
+        await user.save({ validateBeforeSave: false });
+
+        return { accessToken, refreshToken }
+    } catch (error) {
+        throw ApiError(500, "something went wrong while generating generateAccessAndRefreshToken")
+    }
+}
+
 const registerUser = asyncHandler(async (req, res) => {
     // get user details from frontend
     //validation-empty filed
@@ -91,6 +107,18 @@ const loginUser = asyncHandler(async (req, res) => {
 
     if (!user) {
         throw ApiError(404, "User doesn't exist")
+    }
+    const isPasswordValid = await user.isPasswordCorrect(password);
+    if (!isPasswordValid) {
+        throw ApiError(401, "Invalid user credentials")
+    }
+    const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id);
+
+    const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
+
+    const options = {
+        httpOnly: true,
+        secure: true
     }
 })
 
