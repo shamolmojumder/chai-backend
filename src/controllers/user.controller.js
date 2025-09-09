@@ -25,7 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
     //validation-empty filed
     //check if the user is already exist username|| email
     //check the image/avatar
-    //upload them to cloudianry
+    //upload them on cloudianry
     //create user object in db
     //remove password and refresh token
     // check for user creation
@@ -139,5 +139,6 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 export {
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
