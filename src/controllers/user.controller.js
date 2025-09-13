@@ -8,17 +8,21 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
         const user = await User.findById(userId);
-        const accessToken = generateAccessToken();
-        const refreshToken = generateRefreshToken();
+        const accessToken = user.generateAccessToken();
+        const refreshToken = user.generateRefreshToken();
+        console.log("login", accessToken, refreshToken);
         user.refreshToken = refreshToken;
 
         await user.save({ validateBeforeSave: false });
 
         return { accessToken, refreshToken }
     } catch (error) {
-        throw ApiError(500, "something went wrong while generating generateAccessAndRefreshToken")
+        throw new ApiError(500, "something went wrong while generating generateAccessAndRefreshToken")
     }
 }
+
+
+
 
 const registerUser = asyncHandler(async (req, res) => {
     // get user details from frontend
@@ -104,6 +108,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({
         $or: [{ username }, { email }]
     })
+    console.log(user);
 
     if (!user) {
         throw ApiError(404, "User doesn't exist")
