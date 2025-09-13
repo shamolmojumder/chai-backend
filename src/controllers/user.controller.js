@@ -108,7 +108,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findOne({
         $or: [{ username }, { email }]
     })
-    console.log(user);
+    // console.log(user);
 
     if (!user) {
         throw ApiError(404, "User doesn't exist")
@@ -162,6 +162,10 @@ const logoutUser = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, {}, "User logout successfully"))
 });
 
+
+const refreshAccessToken = asyncHandler(async (req, res) => {
+    req.cookies.refreshToken || req.body.refreshToken
+})
 
 export {
     registerUser,
