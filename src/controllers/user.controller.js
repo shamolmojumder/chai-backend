@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import jwt from "jsonwebtoken";
 
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -29,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
     //validation-empty filed
     //check if the user is already exist username|| email
     //check the image/avatar
-    //upload them on cloudianry
+    //upload them on Cloudinary
     //create user object in db
     //remove password and refresh token
     // check for user creation
@@ -164,7 +165,13 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
-    req.cookies.refreshToken || req.body.refreshToken
+    const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
+
+
+    if (!incomingRefreshToken) {
+        throw new ApiError(401, "unauthorized request")
+    }
+    jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
 })
 
 export {
