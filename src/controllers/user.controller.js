@@ -11,7 +11,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
         const user = await User.findById(userId);
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
-        console.log("login", accessToken, refreshToken);
+        console.log("loginData-user", user);
         user.refreshToken = refreshToken;
 
         await user.save({ validateBeforeSave: false });
@@ -155,12 +155,9 @@ const logoutUser = asyncHandler(async (req, res) => {
         httpOnly: true,
         secure: true
     };
+    console.dir(res, res.req.user);
 
-    return res
-        .status(200)
-        .clearCookie("accessToken", options)
-        .clearCookie("refreshToken", options)
-        .json(new ApiResponse(200, {}, "User logout successfully"))
+    return res.status(200).clearCookie("accessToken", options).clearCookie("refreshToken", options).json(new ApiResponse(200, {}, `${res.req.user.fullName} User logout successfully`))
 });
 
 
@@ -169,9 +166,14 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 
     if (!incomingRefreshToken) {
-        throw new ApiError(401, "unauthorized request")
+        throw new ApiError(401, "unauthorized request");
     }
-    jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
+    const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const user = await User.findById(decodedToken?._id);
+
+    if (!user) {
+        throw new ApiError(401, "Invalid refresh token");
+    }
 })
 
 export {
