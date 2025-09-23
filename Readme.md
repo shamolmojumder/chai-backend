@@ -26,7 +26,7 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 ## 🚀 About Me
 
 I'm a full stack developer...
-I am learning Backed from Chai or Code
+I am learning Backend from Chai or Code
 
 ## Features
 

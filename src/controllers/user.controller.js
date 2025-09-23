@@ -218,7 +218,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-    return res.status(200).json(200, req.user, "Current user successfully")
+    return res.status(200).json(200, req.user, "User faceted successfully")
 });
 
 
@@ -229,7 +229,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All fields required")
     }
 
-    const user = User.findByIdAndUpdate(req.user?._id,
+    const user = await User.findByIdAndUpdate(req.user?._id,
         {
             $set: {
                 fullName,
