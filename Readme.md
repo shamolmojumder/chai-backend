@@ -31,9 +31,10 @@ I am learning Backed from Chai or Code
 ## Features
 
 - Create A user
-- Comment
-- Like
+- Comments
+- Likes
 - Subscribe
 - Upload a video
+- Upload a Photo and cover image
 - Update the profile
-- Upload a Profile photo or cover photo
+- Change the password
