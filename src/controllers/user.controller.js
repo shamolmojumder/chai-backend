@@ -219,7 +219,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 
 const getCurrentUser = asyncHandler(async (req, res) => {
     return res.status(200).json(200, req.user, "Current user successfully")
-})
+});
 
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
@@ -238,7 +238,60 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         }, { new: true }).select("-password")
 
     return res.status(200).json(new ApiResponse(200, user, "account details successfully"))
+});
+
+
+const updateUserAvatar = (async (req, res) => {
+    const avatarLocalPath = req.file?.path
+
+    if (!avatarLocalPath) {
+        throw new ApiError(400, "Avatar File is missing")
+    }
+
+    const avatar = await uploadOnCloudinary(avatarLocalPath)
+
+    if (!avatar.url) {
+        throw new ApiError(400, "Error while uploading on avatar")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set: { avatar: avatar.url }
+        },
+        { new: true }
+    ).select("-password")
+
+    res.status(200).json(new ApiResponse(200, user, "Avatar image updated successfully"))
+});
+
+
+//cover image
+const updateUserCoverImage = (async (req, res) => {
+    const coverImageLocalPath = req.file?.path
+
+    if (!coverImageLocalPath) {
+        throw new ApiError(400, "coverImageLocalPath File is missing")
+    }
+
+    const coverImage = await uploadOnCloudinary(coverImageLocalPath)
+
+    if (!coverImage.url) {
+        throw new ApiError(400, "Error while uploading on coverImage")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set: { coverImage: coverImage.url }
+        },
+        { new: true }
+    ).select("-password")
+
+    res.status(200).json(new ApiResponse(200, user, "Cover image updated successfully"))
+
 })
+
 
 
 export {
@@ -248,5 +301,7 @@ export {
     refreshAccessToken,
     changeCurrentPassword,
     getCurrentUser,
-    updateAccountDetails
+    updateAccountDetails,
+    updateUserAvatar,
+    updateUserCoverImage
 };
