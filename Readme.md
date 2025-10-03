@@ -13,6 +13,18 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 ## Documentation
 
 [Backend Flowchart](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
+[Figma](https://www.figma.com/design/Ck1Aq26TIPIojbTg0HWwzR/Video-Steam?t=qLrm27nU6FJZ6fgc-0)
+
+## Features
+
+- Create A user
+- Comments
+- Likes
+- Subscribe
+- Upload a video
+- Upload a Photo and cover image
+- Update the profile
+- Change the password
 
 ## 🔗 Links
 
@@ -27,14 +39,3 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 
 I'm a full stack developer...
 I am learning Backend from Chai or Code
-
-## Features
-
-- Create A user
-- Comments
-- Likes
-- Subscribe
-- Upload a video
-- Upload a Photo and cover image
-- Update the profile
-- Change the password
