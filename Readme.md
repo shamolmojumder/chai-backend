@@ -1,5 +1,9 @@
 # ChaiTube
 
+<p align="center">
+  <img width="884" alt="image" src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png" />
+</p>
+
 Here i am learning how can i write a controller, models ,routes, and middleware
 
 ## Tech Stack
@@ -10,12 +14,14 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 
 **Npm Package:** bcrypt,cloudinary,cookie-parser,cors,dotenv,express,jsonwebtoken,mongoose,mongoose-aggregate-paginate-v2,multer,nodemon,prettier
 
-## Documentation
+## Requirements
 
-[Backend Flowchart](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
-[Figma](https://www.figma.com/design/Ck1Aq26TIPIojbTg0HWwzR/Video-Steam?t=qLrm27nU6FJZ6fgc-0)
+**Backend:** [Backend Flowchart](https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj)
 
-## Features
+**Client:** [Figma](https://www.figma.com/design/Ck1Aq26TIPIojbTg0HWwzR/Video-Steam?t=qLrm27nU6FJZ6fgc-0)
+
+✨ Features
+<video src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png"></video>
 
 - Create A user
 - Comments
