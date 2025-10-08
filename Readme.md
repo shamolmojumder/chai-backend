@@ -1,16 +1,15 @@
 # ChaiTube
 
 <p align="center">
-  <img width="884" alt="image" src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png" />
+  <img src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png" alt="ChaiTube Preview" width="100%" style="border-radius: 10px;" />
 </p>
-
 Here i am learning how can i write a controller, models ,routes, and middleware
 
 ## Tech Stack
 
 **Client:**
 
-**Server:** Node, Express
+**Backend:** NodeJS, ExpressJS
 
 **Npm Package:** bcrypt,cloudinary,cookie-parser,cors,dotenv,express,jsonwebtoken,mongoose,mongoose-aggregate-paginate-v2,multer,nodemon,prettier
 
@@ -20,17 +19,17 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 
 **Client:** [Figma](https://www.figma.com/design/Ck1Aq26TIPIojbTg0HWwzR/Video-Steam?t=qLrm27nU6FJZ6fgc-0)
 
-✨ Features
+🚀 Features
+
 <video src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png"></video>
 
-- Create A user
-- Comments
-- Likes
-- Subscribe
-- Upload a video
-- Upload a Photo and cover image
+- User authentication (signup/login/logout,reset the password)
+- Video,photo,cover photo upload with Multer
+- Like, comment, and subscription system
+- Watch history & liked videos
+- Refresh token & secure cookie handling
+- REST API built with Express
 - Update the profile
-- Change the password
 
 ## 🔗 Links
 
