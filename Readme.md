@@ -23,7 +23,7 @@ Here i am learning how can i write a controller, models ,routes, and middleware
 
 <video src="https://i.ibb.co.com/svKZxVD2/Screenshot-2025-10-06-225241.png"></video>
 
-- User authentication (signup/login/logout,reset the password)
+- User authentication (SignUp/login/logout,reset the password)
 - Video,photo,cover photo upload with Multer
 - Like, comment, and subscription system
 - Watch history & liked videos

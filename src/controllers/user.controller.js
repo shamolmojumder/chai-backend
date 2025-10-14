@@ -11,7 +11,7 @@ const generateAccessAndRefreshTokens = async (userId) => {
         const user = await User.findById(userId);
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
-        console.log("loginData-user", user);
+        console.log("loginData-user", user, refreshToken, accessToken);
         user.refreshToken = refreshToken;
 
         await user.save({ validateBeforeSave: false });
@@ -135,6 +135,7 @@ const loginUser = asyncHandler(async (req, res) => {
                 "user logged in successfully"
             )
         )
+    console.log(accessToken, refreshToken);
 })
 
 
